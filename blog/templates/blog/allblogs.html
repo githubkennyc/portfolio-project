@@ -27,9 +27,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog </a>
+                <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog </a>
                 <a class="nav-item nav-link" href="https://news.google.com/?hl=en-US&gl=US&ceid=US:en">Twitter</a>
-                <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
+                <a class="nav-item nav-link" href=" static 'resume.pdf' ">Resume</a>
 
             </div>
         </div>
@@ -37,39 +37,19 @@
 </header>
 
 <main role="main">
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">KEN TIAN THE GREAT</h1>
-            <p class="lead text-muted">a beautiful website I just made to prove making a website isn't hard at all</p>
-            <p>
-                <a href="#" class="btn btn-primary my-2">Email me</a>
-            </p>
-        </div>
-        <img src="{% static 'pic1.jpg' %}" height="300" />
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-
-            <div class="row">
-
-                {% for e in jobs.all %}
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="img-fluid"  src="{{ e.image.url }}">
-                        <div class="card-body">
-                            <p class="card-text">{{ e.summary }}</p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-
-            </div>
-        </div>
+    <div class="container">
+        <h1 class="text-center pt-5">welcome to my blogs</h1>
+        <br>
+        <br>
+        <h2>my latest blog</h2>
+        <hr/>
+        {% for e in allblogs.all %}
+        <a href="{% url 'blog_detail' e.id %}"><h1>{{ e.title }}</h1></a>
+        <h6>{{ e.pretty_time }}</h6>
+        <img class="img-fluid" height="400" width="300" src="{{ e.image.url }}">
+            <p>{{ e.summary }}</p>
+        {% endfor %}
     </div>
-
-
 </main>
 
 <footer class="text-muted">
