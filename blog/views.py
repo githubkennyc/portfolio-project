@@ -3,7 +3,7 @@ from .models import Blog
 
 # Create your views here.
 def allblogs(request):
-    allblogs = Blog.objects
+    allblogs = Blog.objects.all().order_by("id")
     return render(request, 'blog/allblogs.html', {'allblogs':allblogs})
 
 def blog_detail(request, blog_id):
